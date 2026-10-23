@@ -5,7 +5,7 @@ import axios from "axios";
 
 const empty = { name: "", price: "", stock: "", image: null };
 
-const API_URL = import.meta.env.VITE_BACKEND_URL;
+const API_URL = import.meta.env.VITE_BACKEND_URI;
 
 export default function Products() {
   const { isAdmin } = useAuth();
