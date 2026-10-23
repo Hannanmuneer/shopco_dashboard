@@ -3,7 +3,7 @@ import axios from "axios";
 
 const Ctx = createContext(null);
 
-const API_URL = import.meta.env.VITE_BACKEND_URI;
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 export function AuthProvider({ children }) {
   

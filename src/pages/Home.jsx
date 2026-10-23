@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_BACKEND_URI;
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 
 export default function Home() {
