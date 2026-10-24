@@ -5,7 +5,6 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
-
 const STATUSES = ["Processing", "Shipped", "Delivered", "Cancelled"];
 
 export default function Orders() {
@@ -52,6 +51,20 @@ export default function Orders() {
     }
   };
 
+  const remove = async (id) => {
+    if (!isAdmin) return;
+    if (!window.confirm("Aap waqai is order ko delete karna chahte hain?")) return;
+    const token = sessionStorage.getItem("adminToken");
+    try {
+      await axios.delete(`${API_URL}/delete-order/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      loadOrders();
+    } catch (err) {
+      console.error("Delete error:", err.response?.data);
+      alert("Delete karne mein masla hua!");
+    }
+  };
 
   return (
     <>
@@ -63,7 +76,6 @@ export default function Orders() {
         </p>
       )}
 
-     
       {isAdmin && editId && (
         <form className="panel row" onSubmit={submit}>
           <h3>Update Order Status</h3>
@@ -103,20 +115,10 @@ export default function Orders() {
               return (
                 <tr key={o._id}>
                   <td>{o.createdAt ? new Date(o.createdAt).toLocaleDateString() : "N/A"}</td>
-                  
-                 
                   <td>{typeof o.customer === "object" ? (o.customer?.name || "N/A") : (o.customer || "N/A")}</td>
-                  
-                
                   <td>{productName}</td>
-                  
-                
                   <td>{qty}</td>
-                  
-                 
                   <td>Rs {total.toLocaleString()}</td>
-                  
-              
                   <td><span className={"tag " + currentStatus}>{currentStatus}</span></td>
                   
                   {isAdmin && (

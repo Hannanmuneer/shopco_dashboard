@@ -3,7 +3,7 @@ import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxi
 import axios from "axios";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
-
+console.log("MY API URL IS:", API_URL, "/product-sales");
 
 export default function Home() {
   const [stats, setStats] = useState({
