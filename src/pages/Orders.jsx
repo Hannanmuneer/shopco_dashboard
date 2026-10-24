@@ -56,7 +56,7 @@ export default function Orders() {
     if (!window.confirm("Aap waqai is order ko delete karna chahte hain?")) return;
     const token = sessionStorage.getItem("adminToken");
     try {
-      await axios.delete(`${API_URL}/delete-order/${id}`, {
+      await axios.delete(`${API_URL}/delete-product/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       loadOrders();
